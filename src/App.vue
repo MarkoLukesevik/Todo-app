@@ -45,6 +45,7 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
   flex: 1 1 auto;
   flex-direction: column;
   align-items: center;
+  row-gap: 2rem;
 
   padding: 3rem 1.8rem;
 
@@ -64,6 +65,11 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
 
   &-container {
     position: relative;
+
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    row-gap: 2rem;
 
     width: 90%;
     margin: 0 auto;
