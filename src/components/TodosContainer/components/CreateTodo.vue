@@ -25,24 +25,24 @@ const containerBackgroundColor = computed<string>(() => {
 });
 
 const handleAddNewTodo = (): void => {
-  if (!newTodoTitle.value) return;
+    if (!newTodoTitle.value) return;
 
-  emit('create-todo', {
-    id: generateId(),
-    title: newTodoTitle.value,
-    isComplete: newTodoIsComplete.value
-  });
+    emit('create-todo', {
+        id: generateId(),
+        title: newTodoTitle.value,
+        isComplete: newTodoIsComplete.value
+    });
 
-  resetNewTodo();
+    resetNewTodo();
 }
 
 const resetNewTodo = (): void => {
-  newTodoIsComplete.value = false;
-  newTodoTitle.value = '';
+    newTodoIsComplete.value = false;
+    newTodoTitle.value = '';
 }
 
 const toggleNewTodo = (): void => {
-  newTodoIsComplete.value = !newTodoIsComplete.value;
+    newTodoIsComplete.value = !newTodoIsComplete.value;
 }
 </script>
 
@@ -66,14 +66,14 @@ const toggleNewTodo = (): void => {
 </template>
 
 <style scoped lang="scss">
-  .create-todo-container {
-      display: flex;
-      flex: 0 1 auto;
-      flex-direction: row;
-      column-gap: 0.7rem;
+.create-todo-container {
+    display: flex;
+    flex: 0 1 auto;
+    flex-direction: row;
+    column-gap: 0.7rem;
 
-      padding: 1rem;
-      border-radius: 5px;
-      background-color: white;
-  }
+    padding: 1rem;
+    border-radius: 5px;
+    background-color: white;
+}
 </style>

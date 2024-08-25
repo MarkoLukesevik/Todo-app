@@ -14,7 +14,7 @@ const props = defineProps<{
 }>();
 
 const todos: Ref<Todo[]> = ref([]);
-const currentTodos: Ref<Todo[]> = ref([]);
+const currentTodos: Ref<Todo[]> = ref(todos.value);
 
 const dragAndDropTextColor = computed<string>(() => {
     return props.appTheme === AppThemeEnum.Light ? '#9495A5' : '#5B5E7E';
@@ -22,7 +22,6 @@ const dragAndDropTextColor = computed<string>(() => {
 
 const addNewTodo = (todo: Todo): void => {
     todos.value.push(todo);
-    seeAllTodos();
 }
 
 const toggleTodo = (id: string): void => {
@@ -33,6 +32,7 @@ const toggleTodo = (id: string): void => {
 
 const deleteTodo = (id: string): void => {
     todos.value = todos.value.filter((todo: Todo) => todo.id !== id);
+    currentTodos.value = todos.value;
 }
 
 const seeAllTodos = (): void => {
@@ -46,6 +46,11 @@ const seeOnlyActiveTodos = (): void => {
 const seeOnlyCompletedTodos = (): void => {
     currentTodos.value = todos.value.filter((todo: Todo) => todo.isComplete);
 }
+
+const deleteCompletedTodos = (): void => {
+    todos.value = todos.value.filter((todo: Todo) => !todo.isComplete);
+    currentTodos.value = todos.value;
+}
 </script>
 
 <template>
@@ -53,11 +58,13 @@ const seeOnlyCompletedTodos = (): void => {
     <todo-list
         :app-theme="appTheme"
         :todos="currentTodos"
+        :todos-count="todos.length"
         @toggle-todo="toggleTodo"
         @delete-todo="deleteTodo"
         @see-all-todos="seeAllTodos"
         @see-only-active-todos="seeOnlyActiveTodos"
         @see-only-completed-todos="seeOnlyCompletedTodos"
+        @delete-completed-todos="deleteCompletedTodos"
     />
     <todos-action-bar
         :app-theme="appTheme"

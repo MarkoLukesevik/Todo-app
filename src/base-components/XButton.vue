@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const emit = defineEmits<{
     (e: 'button-click'): void;
-}>()
+}>();
 </script>
 
 <template>

@@ -31,36 +31,36 @@ const actionBarClasses = computed<string[]>(() => {
 </template>
 
 <style scoped lang="scss">
+.action-bar {
+    display: flex;
+    flex-direction: row;
+    flex: 0 1 auto;
+    align-items: center;
+    justify-content: center;
+    column-gap: 1rem;
+
+    background-color: #ffffff;
+    color: #9495A5;
+    border-radius: 5px;
+    padding: 1rem;
+
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
+
+    &__dark {
+        background-color: #25273D;
+        color: #5B5E7E;
+    }
+
+    & > span {
+        cursor: pointer;
+    }
+}
+
+@media only screen and (min-width: 768px) {
     .action-bar {
-        display: flex;
-        flex-direction: row;
-        flex: 0 1 auto;
-        align-items: center;
-        justify-content: center;
-        column-gap: 1rem;
-
-        background-color: #ffffff;
-        color: #9495A5;
-        border-radius: 5px;
-        padding: 1rem;
-
-        font-family: 'Josefin Sans', sans-serif;
-        font-size: 0.9rem;
-        font-weight: 400;
-
-        &__dark {
-            background-color: #25273D;
-            color: #5B5E7E;
-        }
-
-        & > span {
-            cursor: pointer;
-        }
+        display: none;
     }
-
-    @media only screen and (min-width: 768px) {
-        .action-bar {
-            display: none;
-        }
-    }
+}
 </style>

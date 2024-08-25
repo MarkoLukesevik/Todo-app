@@ -8,6 +8,7 @@ import { computed } from 'vue';
 const props = defineProps<{
     appTheme:AppThemeEnum;
     todos: Todo[];
+    todosCount: number;
 }>();
 
 const emit = defineEmits<{
@@ -16,6 +17,7 @@ const emit = defineEmits<{
     (e: 'see-all-todos'): void;
     (e: 'see-only-active-todos'): void;
     (e: 'see-only-completed-todos'): void;
+    (e: 'delete-completed-todos'): void;
 }>();
 
 const todosClasses = computed<string[]>(() => {
@@ -41,75 +43,79 @@ const todosClasses = computed<string[]>(() => {
             />
         </div>
         <div class="todos-footer">
-            <div class="todos-footer__counter">{{ todos.length }} items left</div>
+            <div class="todos-footer__counter">{{ todosCount }} items left</div>
             <div class="todos-footer__actions">
                 <span @click="emit('see-all-todos')">All</span>
                 <span @click="emit('see-only-active-todos')">Active</span>
                 <span @click="emit('see-only-completed-todos')">Completed</span>
             </div>
-            <div class="todos-footer__clear">Clear Completed</div>
+            <div class="todos-footer__clear" @click="emit('delete-completed-todos')">Clear Completed</div>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-    .todos {
-        display: flex;
-        flex-direction: column;
-        flex: 1 1 auto;
+.todos {
+     display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
         
-        background-color: #ffffff;
-        border-radius: 5px;
+    background-color: #ffffff;
+     border-radius: 5px;
 
-        &-list {
-            display: flex;
+    &-list {
+        display: flex;
         flex-direction: column;
         flex: 1 1 0;
 
         overflow-y: auto;
-        }
+    }
 
-        &-footer {
-            display: flex;
-            flex-direction: row;
-            flex: 0 1 auto;
-            align-items: center;
-            justify-content: space-between;
-            column-gap: 0.5rem;
+    &-footer {
+        display: flex;
+        flex-direction: row;
+        flex: 0 1 auto;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 0.5rem;
 
-            padding: 1rem 1.2rem;
-            color: #9495A5;
+        padding: 1rem 1.2rem;
+        color: #9495A5;
     
-            font-family: 'Josefin Sans', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
 
-            &__actions {
-                display: none;
-            }
-
-            &__clear {
-                cursor: pointer;
-            }
+        &__actions {
+            display: none;
         }
 
-        &-dark {
-            background-color: #25273D;
-        }
-
-        &-dark .todos-footer {
-            color: #5B5E7E;
+        &__clear {
+            cursor: pointer;
         }
     }
 
-    @media only screen and (min-width: 768px) {
-        .todos-footer__actions {
-            display: flex;
-            flex-direction: row;
-            flex: 0 1 auto;
-            align-items: center;
-            justify-content: center;
-            column-gap: 1rem;
+    &-dark {
+         background-color: #25273D;
+    }
+
+    &-dark .todos-footer {
+        color: #5B5E7E;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .todos-footer__actions {
+        display: flex;
+        flex-direction: row;
+        flex: 0 1 auto;
+        align-items: center;
+        justify-content: center;
+        column-gap: 1rem;
+
+        & span {
+            cursor: pointer;
         }
     }
+}
 </style>

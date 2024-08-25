@@ -22,67 +22,71 @@ const appBackgroundImage = computed<string>(() => {
 })
 
 const appBackgroundColor = computed<string>(() => {
-  return appTheme.value === AppThemeEnum.Light ? '#fafafa' : '#171823';
+    return appTheme.value === AppThemeEnum.Light ? '#fafafa' : '#171823';
 });
 
 const handleThemeToggle = (theme: AppThemeEnum): void => {
-  appTheme.value = theme;
+    appTheme.value = theme;
 }
 </script>
 
 <template>
-  <div class="app" :style="{ backgroundColor: appBackgroundColor }">
-    <div :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
-    <div class="app-container">
-      <app-header :appTheme="appTheme" @toggle-theme="handleThemeToggle" />
-      <todos-container :app-theme="appTheme" />
+    <div class="app" :style="{ backgroundColor: appBackgroundColor }">
+        <div :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
+        <div class="app-container">
+            <app-header :appTheme="appTheme" @toggle-theme="handleThemeToggle" />
+            <todos-container :app-theme="appTheme" />
+        </div>
     </div>
-  </div>
 </template>
 
 <style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 .app {
-  position: relative;
-
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: center;
-  row-gap: 2rem;
-
-  padding: 3rem 1.8rem;
-
-  &-image {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-
-    background-size: cover;
-    background-position: bottom right;
-    background-repeat: no-repeat;
-
-    width: 100%;
-    height: 30%;
-  }
-
-  &-container {
     position: relative;
 
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-    row-gap: 2rem;
+    align-items: center;
+    row-gap: 1.5rem;
 
-    width: 90%;
-    margin: 0 auto;
-  }
+    padding: 3rem 1.8rem;
+
+    &-image {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+
+        background-size: cover;
+        background-position: bottom right;
+        background-repeat: no-repeat;
+
+        width: 100%;
+        height: 30%;
+    }
+
+    &-container {
+        position: relative;
+
+        display: flex;
+        flex: 1 1 auto;
+        flex-direction: column;
+        row-gap: 2rem;
+
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
 @media only screen and (min-width: 768px) {
-  .app-container {
-    max-width: 540px
-  }
+.app {
+    row-gap: 2rem;
+
+    &-container {
+        max-width: 540px
+    }
+}
 }
 </style>

@@ -21,18 +21,21 @@ const checkButtonClasses = computed<string[]>(() => {
     if (props.appTheme === AppThemeEnum.Dark)
         classes.push('check-button-dark');
 
+    if (props.isChecked)
+      classes.push('check-button__no-border')
+
     return classes;
 });
 </script>
 
 <template>
-  <button
-    :class="checkButtonClasses"
-    :style="{ background: checkButtonBackground }"
-    @click="emit('toggle', !isChecked)"
-  >
-    <img v-if="isChecked" src="/assets/images/icon-check.svg" alt="" />
-  </button>
+    <button
+      :class="checkButtonClasses"
+      :style="{ background: checkButtonBackground }"
+      @click="emit('toggle', !isChecked)"
+    >
+        <img v-if="isChecked" src="/assets/images/icon-check.svg" alt="" />
+    </button>
 </template>
 
 <style scoped lang="scss">
@@ -50,15 +53,14 @@ const checkButtonClasses = computed<string[]>(() => {
     border: 1px solid #979797;
     border-radius: 50%;
 
-    &:hover {
-      background:
-        linear-gradient(transparent, transparent) padding-box,
-        linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
-      border: 1px solid transparent;
-    }
+    cursor: pointer;
 
     &-dark {
       border: 1px solid #393A4B;
+    }
+
+    &__no-border {
+      border: none;
     }
 }
 

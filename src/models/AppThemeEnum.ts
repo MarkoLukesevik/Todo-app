@@ -1,4 +1,4 @@
 export enum AppThemeEnum {
-  Light = 0,
-  Dark = 1
+    Light = 0,
+    Dark = 1
 }
