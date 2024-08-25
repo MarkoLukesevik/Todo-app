@@ -90,7 +90,7 @@ const todosClasses = computed<string[]>(() => {
 .todos {
     display: flex;
     flex-direction: column;
-    flex: 1 1 auto;
+    flex: 0 1 100%;
         
     background-color: #ffffff;
     border-radius: 5px;
