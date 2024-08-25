@@ -32,8 +32,13 @@ const appBackgroundImage = computed<string>(() => {
     }
 })
 
-const appBackgroundColor = computed<string>(() => {
-    return appTheme.value === AppThemeEnum.Light ? '#fafafa' : '#171823';
+const appClasses = computed<string[]>(() => {
+    const classes = ['app']
+
+    if (appTheme.value === AppThemeEnum.Dark)
+        classes.push('app-dark')
+
+    return classes;
 });
 
 const handleThemeToggle = (theme: AppThemeEnum): void => {
@@ -43,7 +48,7 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
 </script>
 
 <template>
-    <div class="app" :style="{ backgroundColor: appBackgroundColor }">
+    <div :class="appClasses">
         <div :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
         <div class="app-container">
             <app-header :appTheme="appTheme" @toggle-theme="handleThemeToggle" />
@@ -63,7 +68,12 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
     align-items: center;
     row-gap: 1.5rem;
 
+    background-color: #fafafa;
     padding: 2rem 1.5rem;
+
+    &-dark {
+        background-color: #171823;
+    }
 
     &-image {
         position: absolute;

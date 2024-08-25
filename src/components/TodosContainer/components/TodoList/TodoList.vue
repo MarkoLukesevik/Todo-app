@@ -97,7 +97,7 @@ const todosClasses = computed<string[]>(() => {
     border-radius: 5px;
 
     ::-webkit-scrollbar {
-        width: 0.4rem;
+        width: 0.3rem;
     }
 
     ::-webkit-scrollbar-track {
