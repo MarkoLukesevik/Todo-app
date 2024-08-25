@@ -96,6 +96,19 @@ const todosClasses = computed<string[]>(() => {
     background-color: #ffffff;
     border-radius: 5px;
 
+    ::-webkit-scrollbar {
+        width: 0.4rem;
+    }
+
+    ::-webkit-scrollbar-track {
+            background-color: #ffffff;
+        }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #E3E4F1;
+        border-radius: 5px;
+    }
+
     &-list {
         display: flex;
         flex-direction: column;
@@ -142,6 +155,15 @@ const todosClasses = computed<string[]>(() => {
                 color: #E3E4F1;
             }
          }
+
+        ::-webkit-scrollbar-track {
+            background-color: #25273D;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #393A4B;
+            border-radius: 5px;
+        }
     }
 }
 
