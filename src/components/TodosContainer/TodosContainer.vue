@@ -1,22 +1,33 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue';
-import type { Ref } from 'vue';
+import { computed, ref, watch, type Ref } from 'vue';
 
 import type { Todo } from '@/models/Todo';
 import { AppThemeEnum } from '@/models/AppThemeEnum';
+import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 import CreateTodo from '@/components/TodosContainer/components/CreateTodo.vue';
 import TodoList from './components/TodoList/TodoList.vue';
 import TodosActionBar from './components/TodosActionBar.vue';
-import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 const props = defineProps<{
     appTheme: AppThemeEnum;
 }>();
 
+const getTodosFromLocalStorage = (): void => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos)
+        todos.value = JSON.parse(storedTodos);
+}
+
+const setTodosLocalStorage =(): void => {
+    localStorage.setItem('todos', JSON.stringify(todos.value));
+}
+
 const todos: Ref<Todo[]> = ref([]);
+getTodosFromLocalStorage();
 const currentTodos: Ref<Todo[]> = ref(todos.value);
 const todosFilter: Ref<TodosFilterEnum> = ref(TodosFilterEnum.All);
+
 
 watch(() => todosFilter.value, () => {
     switch (todosFilter.value) {
@@ -42,22 +53,33 @@ const changeTodosFilter = (filter: TodosFilterEnum): void => {
 
 const addNewTodo = (todo: Todo): void => {
     todos.value.push(todo);
+    setTodosLocalStorage();
 }
 
 const toggleTodo = (id: string): void => {
     const foundTodo = currentTodos.value.find((todo: Todo) => todo.id === id);
-    if (foundTodo)
-      foundTodo.isComplete = !foundTodo.isComplete;
+    if (foundTodo) {
+        foundTodo.isComplete = !foundTodo.isComplete;
+        setTodosLocalStorage();
+    }
 }
 
 const deleteTodo = (id: string): void => {
     todos.value = todos.value.filter((todo: Todo) => todo.id !== id);
+    console.log(todos.value);
     currentTodos.value = todos.value;
+    setTodosLocalStorage();
 }
 
 const deleteCompletedTodos = (): void => {
     todos.value = todos.value.filter((todo: Todo) => !todo.isComplete);
     currentTodos.value = todos.value;
+    setTodosLocalStorage();
+}
+
+const updateTodosOrder = (value: Todo[]) : void => {
+    todos.value = value;
+    setTodosLocalStorage();
 }
 </script>
 
@@ -72,6 +94,7 @@ const deleteCompletedTodos = (): void => {
         @delete-todo="deleteTodo"
         @delete-completed-todos="deleteCompletedTodos"
         @change-todos-filter="changeTodosFilter"
+        @update:model-value="updateTodosOrder"
     />
     <todos-action-bar
         :app-theme="appTheme"

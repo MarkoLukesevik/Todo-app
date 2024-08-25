@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { computed } from 'vue';
+
 import type { Todo } from '@/models/Todo';
+import { AppThemeEnum } from '@/models/AppThemeEnum';
+
 import CheckButton from '@/base-components/CheckButton.vue';
 import XButton from '@/base-components/XButton.vue';
-import { AppThemeEnum } from '@/models/AppThemeEnum';
-import { computed } from 'vue';
 
 const props = defineProps<{
     appTheme: AppThemeEnum;
@@ -19,13 +21,13 @@ const todoItemClasses = computed<string[]>(() => {
     const classes = ['todo-item'];
 
     if (props.appTheme === AppThemeEnum.Dark)
-        classes.push('todo-item__dark')
+        classes.push('todo-item__dark');
 
     if (props.todo.isComplete) {
         classes.push('todo-item__completed');
     }
 
-    return classes
+    return classes;
 });
 </script>
 

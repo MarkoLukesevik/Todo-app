@@ -1,10 +1,13 @@
 <script setup lang="ts">
+import { computed, ref, type Ref } from 'vue';
+
+import draggable from 'vuedraggable';
+
 import type { Todo } from '@/models/Todo';
 import { AppThemeEnum } from '@/models/AppThemeEnum';
 import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 import TodoItem from './components/TodoItem.vue';
-import { computed } from 'vue';
 
 const props = defineProps<{
     appTheme:AppThemeEnum;
@@ -13,11 +16,14 @@ const props = defineProps<{
     todosFilter: TodosFilterEnum;
 }>();
 
+const scopedTodos: Ref<Todo[]> = ref(props.todos);
+
 const emit = defineEmits<{
     (e: 'toggle-todo', value: string): void;
     (e: 'delete-todo', value: string): void;
     (e: 'delete-completed-todos'): void;
     (e: 'change-todos-filter', value: TodosFilterEnum): void;
+    (e: 'update:model-value', value: Todo[]): void;
 }>();
 
 const todosClasses = computed<string[]>(() => {
@@ -33,14 +39,21 @@ const todosClasses = computed<string[]>(() => {
 <template>
     <div :class="todosClasses">
         <div class="todos-list">
-            <todo-item
-                v-for="todo in todos"
-                :key="todo.id"
-                :app-theme="appTheme"
-                :todo="todo"
-                @toggle-todo="emit('toggle-todo', $event)"
-                @delete-todo="emit('delete-todo', $event)"
-            />
+            <draggable
+                v-model="scopedTodos"
+                :item-key="'todos'"
+                @change=" emit('update:model-value', scopedTodos)"
+            >
+                <template #item="{ element: todo }" >
+                    <todo-item
+                        :key="todo.id"
+                        :app-theme="appTheme"
+                        :todo="todo"
+                        @toggle-todo="emit('toggle-todo', $event)"
+                        @delete-todo="emit('delete-todo', $event)"
+                    />
+                </template>
+            </draggable>
         </div>
         <div class="todos-footer">
             <div class="todos-footer__counter">{{ todosCount }} items left</div>
