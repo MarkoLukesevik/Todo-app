@@ -26,19 +26,22 @@ const actionBarClasses = computed<string[]>(() => {
 <template>
     <div :class="actionBarClasses">
         <span
-            :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"
+            class="action-bar__filter"
+            :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.All }"
             @click="emit('change-todos-filter', TodosFilterEnum.All)"
         >
             All
         </span>
         <span
-            :class="{ 'active-filter': todosFilter === TodosFilterEnum.Active }"
+            class="action-bar__filter"
+            :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.Active }"
             @click="emit('change-todos-filter', TodosFilterEnum.Active)"
         >
             Active
         </span>
         <span
-            :class="{ 'active-filter': todosFilter === TodosFilterEnum.Completed }"
+            class="action-bar__filter"
+            :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.Completed }"
             @click="emit('change-todos-filter', TodosFilterEnum.Completed)"
         >
             Completed
@@ -64,24 +67,16 @@ const actionBarClasses = computed<string[]>(() => {
     font-size: 0.9rem;
     font-weight: 600;
 
-    & > span {
+    &__filter {
         cursor: pointer;
-
-        &:hover {
-            color: #494C6B;
-        }
     }
 
     &__dark {
         background-color: #25273D;
         color: #5B5E7E;
-
-        & > span:hover {
-            color: #E3E4F1;
-        }
     }
 
-    & .active-filter {
+    & .action-bar__active-filter {
         color: #3A7CFD;
     }
 }
