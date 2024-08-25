@@ -21,6 +21,10 @@ const todoItemClasses = computed<string[]>(() => {
     if (props.appTheme === AppThemeEnum.Dark)
         classes.push('todo-item__dark')
 
+    if (props.todo.isComplete) {
+        classes.push('todo-item__completed');
+    }
+
     return classes
 });
 </script>
@@ -59,6 +63,15 @@ const todoItemClasses = computed<string[]>(() => {
      &__dark {
         border-bottom: 1px solid #393A4B;
         color: #C8CBE7;
+    }
+
+    &__completed {
+        text-decoration: line-through;
+        color: #D1D2DA;
+    }
+
+    &__completed.todo-item__dark {
+        color: #4D5067;
     }
 
     &-content {

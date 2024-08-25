@@ -46,15 +46,23 @@ const actionBarClasses = computed<string[]>(() => {
 
     font-family: 'Josefin Sans', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 600;
+
+    & > span {
+        cursor: pointer;
+
+        &:hover {
+            color: #494C6B;
+        }
+    }
 
     &__dark {
         background-color: #25273D;
         color: #5B5E7E;
-    }
 
-    & > span {
-        cursor: pointer;
+        & > span:hover {
+            color: #E3E4F1;
+        }
     }
 }
 

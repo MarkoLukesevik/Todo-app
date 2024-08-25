@@ -56,12 +56,12 @@ const todosClasses = computed<string[]>(() => {
 
 <style scoped lang="scss">
 .todos {
-     display: flex;
+    display: flex;
     flex-direction: column;
     flex: 1 1 auto;
         
     background-color: #ffffff;
-     border-radius: 5px;
+    border-radius: 5px;
 
     &-list {
         display: flex;
@@ -83,7 +83,7 @@ const todosClasses = computed<string[]>(() => {
         color: #9495A5;
     
         font-family: 'Josefin Sans', sans-serif;
-        font-size: 1rem;
+        font-size: 0.9rem;
         font-weight: 400;
 
         &__actions {
@@ -92,30 +92,51 @@ const todosClasses = computed<string[]>(() => {
 
         &__clear {
             cursor: pointer;
+
+            &:hover {
+                color: #494C6B;
+            }
         }
     }
 
     &-dark {
          background-color: #25273D;
-    }
 
-    &-dark .todos-footer {
-        color: #5B5E7E;
+         & .todos-footer {
+            color: #5B5E7E;
+
+            &__clear:hover {
+                color: #E3E4F1;
+            }
+         }
     }
 }
 
 @media only screen and (min-width: 768px) {
-    .todos-footer__actions {
-        display: flex;
-        flex-direction: row;
-        flex: 0 1 auto;
-        align-items: center;
-        justify-content: center;
-        column-gap: 1rem;
+    .todos-footer {
+        font-size: 1rem;
 
-        & span {
-            cursor: pointer;
+        &__actions {
+            display: flex;
+            flex-direction: row;
+            flex: 0 1 auto;
+            align-items: center;
+            justify-content: center;
+            column-gap: 1rem;
+
+            & span {
+                cursor: pointer;
+                font-weight: 600;
+
+                &:hover {
+                    color: #494C6B;
+                }
+            }
         }
+    }
+
+    .todos-dark .todos-footer__actions span:hover {
+        color: #E3E4F1;
     }
 }
 </style>

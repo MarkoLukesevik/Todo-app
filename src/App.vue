@@ -51,7 +51,7 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
     align-items: center;
     row-gap: 1.5rem;
 
-    padding: 3rem 1.8rem;
+    padding: 2rem 1.5rem;
 
     &-image {
         position: absolute;
@@ -73,9 +73,9 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
         display: flex;
         flex: 1 1 auto;
         flex-direction: column;
-        row-gap: 2rem;
+        row-gap: 1.5rem;
 
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
 }
@@ -83,8 +83,10 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
 @media only screen and (min-width: 768px) {
 .app {
     row-gap: 2rem;
+    padding: 3rem 1.5rem;
 
     &-container {
+        row-gap: 2rem;
         max-width: 540px
     }
 }
