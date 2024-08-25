@@ -57,4 +57,10 @@ const actionBarClasses = computed<string[]>(() => {
             cursor: pointer;
         }
     }
+
+    @media only screen and (min-width: 768px) {
+        .action-bar {
+            display: none;
+        }
+    }
 </style>

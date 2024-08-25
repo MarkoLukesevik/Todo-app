@@ -13,7 +13,7 @@ const emit = defineEmits<{
 }>();
 
 const textInputColor = computed<string>(() => {
-    return props.appTheme === AppThemeEnum.Light ? '#9495a5' : '#767992';
+    return props.appTheme === AppThemeEnum.Light ? '#9495a5' : '#C8CBE7';
 });
 
 const handleInputChange = (event: Event): void => {
@@ -46,6 +46,12 @@ const handleInputChange = (event: Event): void => {
 
     &:focus {
         outline: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .app-input {
+        font-size: 1.1rem;
     }
 }
 </style>

@@ -81,7 +81,7 @@ const todosClasses = computed<string[]>(() => {
             color: #9495A5;
     
             font-family: 'Josefin Sans', sans-serif;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 400;
 
             &__actions {
@@ -99,6 +99,17 @@ const todosClasses = computed<string[]>(() => {
 
         &-dark .todos-footer {
             color: #5B5E7E;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        .todos-footer__actions {
+            display: flex;
+            flex-direction: row;
+            flex: 0 1 auto;
+            align-items: center;
+            justify-content: center;
+            column-gap: 1rem;
         }
     }
 </style>

@@ -79,4 +79,10 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
     margin: 0 auto;
   }
 }
+
+@media only screen and (min-width: 768px) {
+  .app-container {
+    max-width: 540px
+  }
+}
 </style>

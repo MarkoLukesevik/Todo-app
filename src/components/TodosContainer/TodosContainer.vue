@@ -78,4 +78,10 @@ const seeOnlyCompletedTodos = (): void => {
     font-size: 0.9rem;
     font-weight: 400;
 }
+
+@media only screen and (min-width: 768px) {
+    .drag-and-drop {
+        font-size: 1.1rem;
+    }
+}
 </style>

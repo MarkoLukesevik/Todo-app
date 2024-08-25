@@ -61,4 +61,11 @@ const checkButtonClasses = computed<string[]>(() => {
       border: 1px solid #393A4B;
     }
 }
+
+@media only screen and (min-width: 768px) {
+  .check-button {
+    width: 24px;
+    height: 24px;
+  }
+}
 </style>
