@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import type { Ref } from 'vue';
 
 import type { Todo } from '@/models/Todo';
@@ -8,6 +8,7 @@ import { AppThemeEnum } from '@/models/AppThemeEnum';
 import CreateTodo from '@/components/TodosContainer/components/CreateTodo.vue';
 import TodoList from './components/TodoList/TodoList.vue';
 import TodosActionBar from './components/TodosActionBar.vue';
+import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 const props = defineProps<{
     appTheme: AppThemeEnum;
@@ -15,10 +16,29 @@ const props = defineProps<{
 
 const todos: Ref<Todo[]> = ref([]);
 const currentTodos: Ref<Todo[]> = ref(todos.value);
+const todosFilter: Ref<TodosFilterEnum> = ref(TodosFilterEnum.All);
+
+watch(() => todosFilter.value, () => {
+    switch (todosFilter.value) {
+        case TodosFilterEnum.All:
+            currentTodos.value = todos.value;
+            break;
+        case TodosFilterEnum.Active:
+            currentTodos.value = todos.value.filter((todo: Todo) => !todo.isComplete);
+            break;
+        case TodosFilterEnum.Completed:
+            currentTodos.value = todos.value.filter((todo: Todo) => todo.isComplete);
+            break;
+    }
+});
 
 const dragAndDropTextColor = computed<string>(() => {
     return props.appTheme === AppThemeEnum.Light ? '#9495A5' : '#5B5E7E';
 });
+
+const changeTodosFilter = (filter: TodosFilterEnum): void => {
+    todosFilter.value = filter;
+}
 
 const addNewTodo = (todo: Todo): void => {
     todos.value.push(todo);
@@ -35,18 +55,6 @@ const deleteTodo = (id: string): void => {
     currentTodos.value = todos.value;
 }
 
-const seeAllTodos = (): void => {
-    currentTodos.value = todos.value;
-}
-
-const seeOnlyActiveTodos = (): void => {
-    currentTodos.value = todos.value.filter((todo: Todo) => !todo.isComplete);
-}
-
-const seeOnlyCompletedTodos = (): void => {
-    currentTodos.value = todos.value.filter((todo: Todo) => todo.isComplete);
-}
-
 const deleteCompletedTodos = (): void => {
     todos.value = todos.value.filter((todo: Todo) => !todo.isComplete);
     currentTodos.value = todos.value;
@@ -59,18 +67,16 @@ const deleteCompletedTodos = (): void => {
         :app-theme="appTheme"
         :todos="currentTodos"
         :todos-count="todos.length"
+        :todos-filter="todosFilter"
         @toggle-todo="toggleTodo"
         @delete-todo="deleteTodo"
-        @see-all-todos="seeAllTodos"
-        @see-only-active-todos="seeOnlyActiveTodos"
-        @see-only-completed-todos="seeOnlyCompletedTodos"
         @delete-completed-todos="deleteCompletedTodos"
+        @change-todos-filter="changeTodosFilter"
     />
     <todos-action-bar
         :app-theme="appTheme"
-        @see-all-todos="seeAllTodos"
-        @see-only-active-todos="seeOnlyActiveTodos"
-        @see-only-completed-todos="seeOnlyCompletedTodos"
+        :todos-filter="todosFilter"
+        @change-todos-filter="changeTodosFilter"
     />
 
     <p class="drag-and-drop" :style="{ color: dragAndDropTextColor }">

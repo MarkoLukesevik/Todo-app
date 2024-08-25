@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Todo } from '@/models/Todo';
 import { AppThemeEnum } from '@/models/AppThemeEnum';
+import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 import TodoItem from './components/TodoItem.vue';
 import { computed } from 'vue';
@@ -9,15 +10,14 @@ const props = defineProps<{
     appTheme:AppThemeEnum;
     todos: Todo[];
     todosCount: number;
+    todosFilter: TodosFilterEnum;
 }>();
 
 const emit = defineEmits<{
     (e: 'toggle-todo', value: string): void;
     (e: 'delete-todo', value: string): void;
-    (e: 'see-all-todos'): void;
-    (e: 'see-only-active-todos'): void;
-    (e: 'see-only-completed-todos'): void;
     (e: 'delete-completed-todos'): void;
+    (e: 'change-todos-filter', value: TodosFilterEnum): void;
 }>();
 
 const todosClasses = computed<string[]>(() => {
@@ -45,9 +45,24 @@ const todosClasses = computed<string[]>(() => {
         <div class="todos-footer">
             <div class="todos-footer__counter">{{ todosCount }} items left</div>
             <div class="todos-footer__actions">
-                <span @click="emit('see-all-todos')">All</span>
-                <span @click="emit('see-only-active-todos')">Active</span>
-                <span @click="emit('see-only-completed-todos')">Completed</span>
+                <span
+                    :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"
+                    @click="emit('change-todos-filter', TodosFilterEnum.All)"
+                >
+                    All
+                </span>
+                <span
+                    :class="{ 'active-filter': todosFilter === TodosFilterEnum.Active }"
+                    @click="emit('change-todos-filter', TodosFilterEnum.Active)"
+                >
+                    Active
+                </span>
+                <span
+                    :class="{ 'active-filter': todosFilter === TodosFilterEnum.Completed }"
+                    @click="emit('change-todos-filter', TodosFilterEnum.Completed)"
+                >
+                    Completed
+                </span>
             </div>
             <div class="todos-footer__clear" @click="emit('delete-completed-todos')">Clear Completed</div>
         </div>
@@ -131,6 +146,10 @@ const todosClasses = computed<string[]>(() => {
                 &:hover {
                     color: #494C6B;
                 }
+            }
+
+            & .active-filter {
+                color: #3A7CFD;
             }
         }
     }

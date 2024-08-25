@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { AppThemeEnum } from '@/models/AppThemeEnum';
 import { computed } from 'vue';
+
+import { AppThemeEnum } from '@/models/AppThemeEnum';
+import { TodosFilterEnum } from '@/models/TodosFilterEnum';
 
 const props = defineProps<{
     appTheme: AppThemeEnum;
+    todosFilter: TodosFilterEnum;
 }>();
 
 const emit = defineEmits<{
-    (e: 'see-all-todos'): void;
-    (e: 'see-only-active-todos'): void;
-    (e: 'see-only-completed-todos'): void;
+    (e: 'change-todos-filter', value: TodosFilterEnum): void;
 }>();
 
 const actionBarClasses = computed<string[]>(() => {
@@ -24,9 +25,24 @@ const actionBarClasses = computed<string[]>(() => {
 
 <template>
     <div :class="actionBarClasses">
-        <span @click="emit('see-all-todos')">All</span>
-        <span @click="emit('see-only-active-todos')">Active</span>
-        <span @click="emit('see-only-completed-todos')">Completed</span>
+        <span
+            :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"
+            @click="emit('change-todos-filter', TodosFilterEnum.All)"
+        >
+            All
+        </span>
+        <span
+            :class="{ 'active-filter': todosFilter === TodosFilterEnum.Active }"
+            @click="emit('change-todos-filter', TodosFilterEnum.Active)"
+        >
+            Active
+        </span>
+        <span
+            :class="{ 'active-filter': todosFilter === TodosFilterEnum.Completed }"
+            @click="emit('change-todos-filter', TodosFilterEnum.Completed)"
+        >
+            Completed
+        </span>
     </div>
 </template>
 
@@ -63,6 +79,10 @@ const actionBarClasses = computed<string[]>(() => {
         & > span:hover {
             color: #E3E4F1;
         }
+    }
+
+    & .active-filter {
+        color: #3A7CFD;
     }
 }
 
