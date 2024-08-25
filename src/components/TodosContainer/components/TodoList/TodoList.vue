@@ -95,6 +95,7 @@ const todosClasses = computed<string[]>(() => {
         
     background-color: #ffffff;
     border-radius: 5px;
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
 
     ::-webkit-scrollbar {
         width: 0.3rem;
@@ -147,6 +148,7 @@ const todosClasses = computed<string[]>(() => {
 
     &-dark {
          background-color: #25273D;
+         box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
 
          & .todos-footer {
             color: #5B5E7E;

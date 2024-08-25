@@ -60,6 +60,7 @@ const actionBarClasses = computed<string[]>(() => {
 
     background-color: #ffffff;
     color: #9495A5;
+    box-shadow: 0px 35px 50px -15px rgba(194, 195, 214, 0.5);
     border-radius: 5px;
     padding: 1rem;
 
@@ -74,6 +75,7 @@ const actionBarClasses = computed<string[]>(() => {
     &__dark {
         background-color: #25273D;
         color: #5B5E7E;
+        box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
     }
 
     & .action-bar__active-filter {
