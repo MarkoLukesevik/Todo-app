@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, type Ref } from 'vue';
+import { computed, ref, watch, type Ref } from 'vue';
 
 import draggable from 'vuedraggable';
 
@@ -12,11 +12,14 @@ import TodoItem from './components/TodoItem.vue';
 const props = defineProps<{
     appTheme:AppThemeEnum;
     todos: Todo[];
-    todosCount: number;
     todosFilter: TodosFilterEnum;
 }>();
 
 const scopedTodos: Ref<Todo[]> = ref(props.todos);
+
+watch(() => props.todos, () => {
+    scopedTodos.value = props.todos;
+});
 
 const emit = defineEmits<{
     (e: 'toggle-todo', value: string): void;
@@ -56,7 +59,7 @@ const todosClasses = computed<string[]>(() => {
             </draggable>
         </div>
         <div class="todos-footer">
-            <div class="todos-footer__counter">{{ todosCount }} items left</div>
+            <div class="todos-footer__counter">{{ scopedTodos.length }} items left</div>
             <div class="todos-footer__actions">
                 <span
                     :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"

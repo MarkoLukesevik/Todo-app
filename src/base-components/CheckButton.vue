@@ -3,12 +3,12 @@ import { AppThemeEnum } from '@/models/AppThemeEnum';
 import { computed } from 'vue';
 
 const props = defineProps<{
-  isChecked: boolean;
-  appTheme: AppThemeEnum;
+    isChecked: boolean;
+    appTheme: AppThemeEnum;
 }>();
 
 const emit = defineEmits<{
-  (e: 'toggle', value: boolean): void;
+    (e: 'toggle', value: boolean): void;
 }>();
 
 const checkButtonBackground = computed<string>(() => {
@@ -61,6 +61,10 @@ const checkButtonClasses = computed<string[]>(() => {
 
     &__no-border {
       border: none;
+    }
+
+    &:focus {
+      outline: none;
     }
 }
 
