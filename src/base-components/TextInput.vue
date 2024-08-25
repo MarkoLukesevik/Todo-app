@@ -1,16 +1,16 @@
 <script setup lang="ts">
 defineProps<{
-  placeholder: string
-  modelValue: string
-}>()
+  placeholder: string;
+  modelValue: string;
+}>();
 
 const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
+    (e: 'update:modelValue', value: string): void;
+}>();
 
 const handleInputChange = (event: Event): void => {
-  emit('update:modelValue', (event.target as HTMLInputElement).value)
-}
+    emit('update:modelValue', (event.target as HTMLInputElement).value);
+};
 </script>
 
 <template>
@@ -24,19 +24,20 @@ const handleInputChange = (event: Event): void => {
 
 <style scoped lang="scss">
 .app-input {
-  display: flex;
-  flex-direction: row;
-  flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
 
-  color: #9495a5;
-  border: none;
+    background-color: transparent;
+    color: #9495a5;
+    border: none;
 
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 400;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 400;
 
-  &:focus {
-    outline: none;
-  }
+    &:focus {
+        outline: none;
+    }
 }
 </style>

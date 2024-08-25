@@ -1,37 +1,41 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import type { Ref } from 'vue'
+import { ref, computed } from 'vue';
+import type { Ref } from 'vue';
 
-import { AppThemeEnum } from '@/models/AppThemeEnum'
+import { AppThemeEnum } from '@/models/AppThemeEnum';
 
-import TodosContainer from '@/components/TodosContainer/TodosContainer.vue'
-import AppHeader from '@/components/AppHeader.vue'
+import TodosContainer from '@/components/TodosContainer/TodosContainer.vue';
+import AppHeader from '@/components/AppHeader.vue';
 
-const appTheme: Ref<AppThemeEnum> = ref(AppThemeEnum.Light)
+const appTheme: Ref<AppThemeEnum> = ref(AppThemeEnum.Light);
 
 const appBackgroundImage = computed<string>(() => {
-  if (window.innerWidth < 768) {
-    return appTheme.value === AppThemeEnum.Light
-      ? '/assets/images/bg-mobile-light.jpg'
-      : '/assets/images/bg-mobile-dark.jpg'
-  } else {
-    return appTheme.value === AppThemeEnum.Light
-      ? '/assets/images/bg-desktop-light.jpg'
-      : '/assets/images/bg-desktop-dark.jpg'
-  }
+    if (window.innerWidth < 768) {
+      return appTheme.value === AppThemeEnum.Light
+        ? '/assets/images/bg-mobile-light.jpg'
+        : '/assets/images/bg-mobile-dark.jpg';
+    } else {
+      return appTheme.value === AppThemeEnum.Light
+        ? '/assets/images/bg-desktop-light.jpg'
+        : '/assets/images/bg-desktop-dark.jpg';
+    }
 })
 
+const appBackgroundColor = computed<string>(() => {
+  return appTheme.value === AppThemeEnum.Light ? '#fafafa' : '#171823';
+});
+
 const handleThemeToggle = (theme: AppThemeEnum): void => {
-  appTheme.value = theme
+  appTheme.value = theme;
 }
 </script>
 
 <template>
-  <div class="app">
+  <div class="app" :style="{ backgroundColor: appBackgroundColor }">
     <div :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
     <div class="app-container">
       <app-header :appTheme="appTheme" @toggle-theme="handleThemeToggle" />
-      <todos-container />
+      <todos-container :app-theme="appTheme" />
     </div>
   </div>
 </template>
