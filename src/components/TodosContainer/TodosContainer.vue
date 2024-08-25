@@ -87,6 +87,7 @@ const updateTodosOrder = (value: Todo[]) : void => {
     <todo-list
         :app-theme="appTheme"
         :todos="currentTodos"
+        :todos-count="todos.length"
         :todos-filter="todosFilter"
         @toggle-todo="toggleTodo"
         @delete-todo="deleteTodo"

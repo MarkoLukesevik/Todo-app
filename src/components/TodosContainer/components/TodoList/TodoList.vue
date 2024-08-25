@@ -13,6 +13,7 @@ const props = defineProps<{
     appTheme:AppThemeEnum;
     todos: Todo[];
     todosFilter: TodosFilterEnum;
+    todosCount: number;
 }>();
 
 const scopedTodos: Ref<Todo[]> = ref(props.todos);
@@ -60,7 +61,7 @@ const todosClasses = computed<string[]>(() => {
             </draggable>
         </div>
         <div class="todos-footer">
-            <div class="todos-footer__counter">{{ scopedTodos.length }} items left</div>
+            <div class="todos-footer__counter">{{ todosCount }} items left</div>
             <div class="todos-footer__actions">
                 <span
                     :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"
