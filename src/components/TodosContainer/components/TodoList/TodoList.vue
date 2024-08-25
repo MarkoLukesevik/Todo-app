@@ -47,7 +47,7 @@ const todosClasses = computed<string[]>(() => {
                 :item-key="'todos'"
                 @change=" emit('update:model-value', scopedTodos)"
             >
-                <template #item="{ element: todo }" >
+                <template #item="{ element: todo }">
                     <todo-item
                         :key="todo.id"
                         :app-theme="appTheme"
