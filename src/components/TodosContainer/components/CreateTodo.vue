@@ -47,10 +47,22 @@ const toggleNewTodo = (): void => {
 </script>
 
 <template>
-  <div class="create-todo-container" @keyup.enter="handleAddNewTodo()" :style="{ backgroundColor: containerBackgroundColor }">
-    <check-button :isChecked="newTodoIsComplete" @toggle="toggleNewTodo"></check-button>
-    <text-input placeholder="Create new todo..." v-model="newTodoTitle"></text-input>
-  </div>
+    <div
+        class="create-todo-container"
+        @keyup.enter="handleAddNewTodo()"
+        :style="{ backgroundColor: containerBackgroundColor }"
+    >
+        <check-button
+            :isChecked="newTodoIsComplete"
+            :app-theme="appTheme"
+            @toggle="toggleNewTodo"
+        />
+        <text-input
+            placeholder="Create new todo..."
+            v-model="newTodoTitle"
+            :app-theme="appTheme"
+        />
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -58,7 +70,7 @@ const toggleNewTodo = (): void => {
       display: flex;
       flex: 0 1 auto;
       flex-direction: row;
-      column-gap: 0.5rem;
+      column-gap: 0.7rem;
 
       padding: 1rem;
       border-radius: 5px;

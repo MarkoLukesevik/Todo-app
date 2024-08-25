@@ -1,12 +1,20 @@
 <script setup lang="ts">
-defineProps<{
-  placeholder: string;
-  modelValue: string;
+import { AppThemeEnum } from '@/models/AppThemeEnum';
+import { computed } from 'vue';
+
+const props = defineProps<{
+    placeholder: string;
+    modelValue: string;
+    appTheme: AppThemeEnum;
 }>();
 
 const emit = defineEmits<{
     (e: 'update:modelValue', value: string): void;
 }>();
+
+const textInputColor = computed<string>(() => {
+    return props.appTheme === AppThemeEnum.Light ? '#9495a5' : '#767992';
+});
 
 const handleInputChange = (event: Event): void => {
     emit('update:modelValue', (event.target as HTMLInputElement).value);
@@ -16,6 +24,7 @@ const handleInputChange = (event: Event): void => {
 <template>
   <input
     class="app-input"
+    :style="{ color: textInputColor }"
     :placeholder="placeholder"
     :value="modelValue"
     @input="handleInputChange($event)"
@@ -29,7 +38,6 @@ const handleInputChange = (event: Event): void => {
     flex: 1 1 auto;
 
     background-color: transparent;
-    color: #9495a5;
     border: none;
 
     font-family: 'Josefin Sans', sans-serif;

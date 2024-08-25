@@ -23,14 +23,16 @@ const todoItemClasses = computed<string[]>(() => {
 
     return classes
 });
-
-
 </script>
 
 <template>
     <div :class="todoItemClasses">
         <div class="todo-item-content">
-            <check-button :isChecked="todo.isComplete" @toggle="emit('toggle-todo', todo.id)"/>
+            <check-button
+                :isChecked="todo.isComplete"
+                :app-theme="appTheme"
+                @toggle="emit('toggle-todo', todo.id)"
+            />
             <p>{{ todo.title }}</p>
         </div>
         <x-button @button-click="emit('delete-todo', todo.id)"></x-button>
@@ -64,7 +66,7 @@ const todoItemClasses = computed<string[]>(() => {
             flex-direction: row;
             flex: 0 1 auto;
             align-items: center;
-            column-gap: 0.5rem;
+            column-gap: 0.7rem;
         }
     }
 </style>

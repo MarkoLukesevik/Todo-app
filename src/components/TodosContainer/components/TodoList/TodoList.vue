@@ -13,15 +13,23 @@ const props = defineProps<{
 const emit = defineEmits<{
     (e: 'toggle-todo', value: string): void;
     (e: 'delete-todo', value: string): void;
+    (e: 'see-all-todos'): void;
+    (e: 'see-only-active-todos'): void;
+    (e: 'see-only-completed-todos'): void;
 }>();
 
-const todosBackgroundColor = computed<string>(() => {
-    return props.appTheme === AppThemeEnum.Light ? '#ffffff' : '#25273D';
+const todosClasses = computed<string[]>(() => {
+    const classes = ['todos'];
+
+    if (props.appTheme === AppThemeEnum.Dark)
+        classes.push('todos-dark');
+
+    return classes;
 });
 </script>
 
 <template>
-    <div class="todos" :style="{ backgroundColor: todosBackgroundColor }">
+    <div :class="todosClasses">
         <div class="todos-list">
             <todo-item
                 v-for="todo in todos"
@@ -35,9 +43,9 @@ const todosBackgroundColor = computed<string>(() => {
         <div class="todos-footer">
             <div class="todos-footer__counter">{{ todos.length }} items left</div>
             <div class="todos-footer__actions">
-                <span>All</span>
-                <span>Active</span>
-                <span>Completed</span>
+                <span @click="emit('see-all-todos')">All</span>
+                <span @click="emit('see-only-active-todos')">Active</span>
+                <span @click="emit('see-only-completed-todos')">Completed</span>
             </div>
             <div class="todos-footer__clear">Clear Completed</div>
         </div>
@@ -50,6 +58,7 @@ const todosBackgroundColor = computed<string>(() => {
         flex-direction: column;
         flex: 1 1 auto;
         
+        background-color: #ffffff;
         border-radius: 5px;
 
         &-list {
@@ -82,6 +91,14 @@ const todosBackgroundColor = computed<string>(() => {
             &__clear {
                 cursor: pointer;
             }
+        }
+
+        &-dark {
+            background-color: #25273D;
+        }
+
+        &-dark .todos-footer {
+            color: #5B5E7E;
         }
     }
 </style>
