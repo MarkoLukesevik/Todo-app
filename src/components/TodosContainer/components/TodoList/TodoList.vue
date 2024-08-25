@@ -45,6 +45,7 @@ const todosClasses = computed<string[]>(() => {
             <draggable
                 v-model="scopedTodos"
                 :item-key="'todos'"
+                :scroll="true"
                 @change=" emit('update:model-value', scopedTodos)"
             >
                 <template #item="{ element: todo }">
@@ -99,6 +100,7 @@ const todosClasses = computed<string[]>(() => {
         flex-direction: column;
         flex: 1 1 0;
 
+        touch-action: pan-y;
         overflow-y: auto;
     }
 
