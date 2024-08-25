@@ -7,7 +7,18 @@ import { AppThemeEnum } from '@/models/AppThemeEnum';
 import TodosContainer from '@/components/TodosContainer/TodosContainer.vue';
 import AppHeader from '@/components/AppHeader.vue';
 
-const appTheme: Ref<AppThemeEnum> = ref(AppThemeEnum.Light);
+const getAppThemeFromLocalStorage = (): AppThemeEnum => {
+    const storedAppTheme = localStorage.getItem('appTheme');
+    if (storedAppTheme)
+        return JSON.parse(storedAppTheme);
+    return AppThemeEnum.Light;
+}
+
+const setAppThemeLocalStorage =(): void => {
+    localStorage.setItem('appTheme', JSON.stringify(appTheme.value));
+}
+
+const appTheme: Ref<AppThemeEnum> = ref(getAppThemeFromLocalStorage());
 
 const appBackgroundImage = computed<string>(() => {
     if (window.innerWidth < 768) {
@@ -27,6 +38,7 @@ const appBackgroundColor = computed<string>(() => {
 
 const handleThemeToggle = (theme: AppThemeEnum): void => {
     appTheme.value = theme;
+    setAppThemeLocalStorage();
 }
 </script>
 
