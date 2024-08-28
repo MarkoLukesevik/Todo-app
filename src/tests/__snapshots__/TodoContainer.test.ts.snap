@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for todo container component > Should match the snapshot 1`] = `
+<div
+  data-v-app=""
+>
+  
+  <create-todo-stub
+    apptheme="0"
+    data-v-14f277b8=""
+  />
+  <todo-list-stub
+    apptheme="0"
+    data-v-14f277b8=""
+    todos=""
+    todoscount="0"
+    todosfilter="0"
+  />
+  <todos-action-bar-stub
+    apptheme="0"
+    data-v-14f277b8=""
+    todosfilter="0"
+  />
+  <p
+    class="drag-and-drop"
+    data-v-14f277b8=""
+    style="color: rgb(148, 149, 165);"
+  >
+     Drag and drop to reorder list 
+  </p>
+  
+</div>
+`;

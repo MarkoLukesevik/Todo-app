@@ -1,5 +1,5 @@
-import { shallowMount } from '@vue/test-utils';
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
+import { shallowMount } from '@vue/test-utils';
 import { nextTick } from 'vue';
 
 import { AppThemeEnum } from '@/models/AppThemeEnum';

@@ -3,9 +3,9 @@ import { shallowMount } from "@vue/test-utils";
 
 import { mockLocalStorage } from "./mockLocalStorage/mockLocalStorage";
 import { TodosFilterEnum } from "@/models/TodosFilterEnum";
+import { AppThemeEnum } from "@/models/AppThemeEnum";
 
 import TodosContainer from "@/components/TodosContainer/TodosContainer.vue";
-import { AppThemeEnum } from "@/models/AppThemeEnum";
 
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 
@@ -17,6 +17,10 @@ describe('Test suite for todo container component', () => {
         wrapper = shallowMount(TodosContainer, {
             props: {appTheme: AppThemeEnum.Light}
         });
+    });
+
+    it('Should match the snapshot', () => {
+        expect(wrapper.element).toMatchSnapshot();
     });
 
     it('Should add a new todo and update local storage', async () => {

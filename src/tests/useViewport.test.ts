@@ -1,5 +1,5 @@
-import { mount, VueWrapper } from '@vue/test-utils';
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { mount, VueWrapper } from '@vue/test-utils';
 import { nextTick } from 'vue';
 
 import { useViewport } from '@/mixins/viewportMixin';

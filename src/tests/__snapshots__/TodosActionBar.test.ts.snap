@@ -1,0 +1,31 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for todos actions bar component > Should match the snapshot 1`] = `
+<div
+  class="action-bar"
+  data-test="action-bar"
+  data-v-ad5062d3=""
+>
+  <span
+    class="action-bar__filter action-bar__active-filter"
+    data-test="action-bar-all-filter"
+    data-v-ad5062d3=""
+  >
+     All 
+  </span>
+  <span
+    class="action-bar__filter"
+    data-test="action-bar-active-filter"
+    data-v-ad5062d3=""
+  >
+     Active 
+  </span>
+  <span
+    class="action-bar__filter"
+    data-test="action-bar-completed-filter"
+    data-v-ad5062d3=""
+  >
+     Completed 
+  </span>
+</div>
+`;

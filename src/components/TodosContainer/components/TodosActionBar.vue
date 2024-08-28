@@ -24,8 +24,9 @@ const actionBarClasses = computed<string[]>(() => {
 </script>
 
 <template>
-    <div :class="actionBarClasses">
+    <div data-test="action-bar" :class="actionBarClasses">
         <span
+            data-test="action-bar-all-filter"
             class="action-bar__filter"
             :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.All }"
             @click="emit('change-todos-filter', TodosFilterEnum.All)"
@@ -33,6 +34,7 @@ const actionBarClasses = computed<string[]>(() => {
             All
         </span>
         <span
+            data-test="action-bar-active-filter"
             class="action-bar__filter"
             :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.Active }"
             @click="emit('change-todos-filter', TodosFilterEnum.Active)"
@@ -40,6 +42,7 @@ const actionBarClasses = computed<string[]>(() => {
             Active
         </span>
         <span
+            data-test="action-bar-completed-filter"
             class="action-bar__filter"
             :class="{ 'action-bar__active-filter': todosFilter === TodosFilterEnum.Completed }"
             @click="emit('change-todos-filter', TodosFilterEnum.Completed)"

@@ -2,8 +2,9 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { shallowMount } from '@vue/test-utils';
 import { nextTick } from 'vue';
 
-import AppHeader from '@/components/AppHeader.vue';
 import { AppThemeEnum } from '@/models/AppThemeEnum';
+
+import AppHeader from '@/components/AppHeader.vue';
 
 describe('Test suite for app header component', () => {
     let wrapper: any;
