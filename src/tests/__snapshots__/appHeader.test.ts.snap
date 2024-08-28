@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for app header component > Should match the snapshot 1`] = `
+<div
+  class="app-header"
+  data-v-48a13218=""
+>
+  <h1
+    class="app-header__title"
+    data-v-48a13218=""
+  >
+    TODO
+  </h1>
+  <img
+    alt=""
+    class="app-header__theme-icon"
+    data-test="app-header-image"
+    data-v-48a13218=""
+    src="/assets/images/icon-moon.svg"
+  />
+</div>
+`;

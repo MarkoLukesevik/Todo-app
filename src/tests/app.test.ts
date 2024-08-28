@@ -34,7 +34,7 @@ const mockLocalStorage: MockLocalStorage = {
   
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 
-describe('test suite for app component', () => {
+describe('Test suite for app component', () => {
     let wrapper: any;
     let originalInnerWidth: number;
 

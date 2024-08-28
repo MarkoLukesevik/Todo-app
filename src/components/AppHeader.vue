@@ -26,7 +26,7 @@ const handleIconClick = (): void => {
 <template>
     <div class="app-header">
         <h1 class="app-header__title">TODO</h1>
-        <img class="app-header__theme-icon" :src="themeIcon" alt="" @click="handleIconClick" />
+        <img data-test="app-header-image" class="app-header__theme-icon" :src="themeIcon" alt="" @click="handleIconClick" />
     </div>
 </template>
 

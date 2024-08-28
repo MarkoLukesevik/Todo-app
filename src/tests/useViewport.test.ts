@@ -4,7 +4,7 @@ import { nextTick } from 'vue';
 
 import { useViewport } from '@/mixins/viewportMixin';
 
-describe('useViewport', () => {
+describe('Test suite for viewport mixin', () => {
     let wrapper: VueWrapper<any>;
     let originalInnerWidth: number;
     let addEventListenerSpy: any;
