@@ -1,10 +1,11 @@
-import { describe, expect, it } from 'vitest';
+import { shallowMount } from '@vue/test-utils';
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
+import { nextTick } from 'vue';
+
+import { AppThemeEnum } from '@/models/AppThemeEnum';
+
 import App from '@/App.vue';
 import AppHeader from '@/components/AppHeader.vue';
-import { AppThemeEnum } from '@/models/AppThemeEnum';
-import { beforeEach, afterEach } from 'vitest';
-import { shallowMount } from '@vue/test-utils';
-import { nextTick } from 'vue';
 
 
 interface MockLocalStorage {
@@ -111,7 +112,7 @@ describe('test suite for app component', () => {
         expect(wrapper.vm.appTheme).toBe(AppThemeEnum.Light);
 
         wrapper.vm.handleThemeToggle(AppThemeEnum.Dark);
-        await wrapper.vm.$nextTick();
+        await nextTick();
 
         expect(wrapper.vm.appTheme).toBe(AppThemeEnum.Dark);
         expect(localStorage.getItem('appTheme')).toBe(JSON.stringify(AppThemeEnum.Dark));
@@ -121,7 +122,7 @@ describe('test suite for app component', () => {
         const appHeader = wrapper.findComponent(AppHeader);
 
         await appHeader.vm.$emit('toggle-theme', AppThemeEnum.Dark);
-        await wrapper.vm.$nextTick();
+        await nextTick();
 
         expect(wrapper.vm.appTheme).toBe(AppThemeEnum.Dark);
       });
