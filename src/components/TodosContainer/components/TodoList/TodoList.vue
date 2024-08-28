@@ -42,6 +42,7 @@ const todosClasses = computed<string[]>(() => {
 
 <template>
     <div :class="todosClasses">
+        <p v-if="todosCount === 0" class="todos-empty">Your todo list is empty. please add some todo items.</p>
         <div class="todos-list">
             <draggable
                 v-model="scopedTodos"
@@ -110,6 +111,14 @@ const todosClasses = computed<string[]>(() => {
         border-radius: 5px;
     }
 
+    &-empty {
+        margin: 1rem 1.2rem;
+        color: #494C6B;
+        font-family: 'Josefin Sans', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 400;
+    }
+
     &-list {
         display: flex;
         flex-direction: column;
@@ -150,6 +159,10 @@ const todosClasses = computed<string[]>(() => {
          background-color: #25273D;
          box-shadow: 0px 35px 50px -15px rgba(0, 0, 0, 0.5);
 
+         & .todos-empty {
+            color: #C8CBE7;
+         }
+
          & .todos-footer {
             color: #5B5E7E;
 
@@ -170,28 +183,34 @@ const todosClasses = computed<string[]>(() => {
 }
 
 @media only screen and (min-width: 768px) {
-    .todos-footer {
-        font-size: 1rem;
+    .todos {
+        &-empty {
+            font-size: 1.1rem;
+        }
 
-        &__actions {
-            display: flex;
-            flex-direction: row;
-            flex: 0 1 auto;
-            align-items: center;
-            justify-content: center;
-            column-gap: 1rem;
+        &-footer {
+            font-size: 1rem;
 
-            & span {
-                cursor: pointer;
-                font-weight: 600;
+            &__actions {
+                display: flex;
+                flex-direction: row;
+                flex: 0 1 auto;
+                align-items: center;
+                justify-content: center;
+                column-gap: 1rem;
 
-                &:hover {
-                    color: #494C6B;
+                & span {
+                    cursor: pointer;
+                    font-weight: 600;
+
+                    &:hover {
+                        color: #494C6B;
+                    }
                 }
-            }
 
-            & .active-filter {
-                color: #3A7CFD;
+                & .active-filter {
+                    color: #3A7CFD;
+                }
             }
         }
     }
