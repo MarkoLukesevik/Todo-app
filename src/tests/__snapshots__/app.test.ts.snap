@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`test suite for app component > Should match the snapshot 1`] = `
+<div
+  class="app"
+  data-test="app"
+  data-v-7a7a37b1=""
+>
+  <div
+    class="app-image"
+    data-test="app-image"
+    data-v-7a7a37b1=""
+    style="background-image: url(/assets/images/bg-desktop-light.jpg);"
+  />
+  <div
+    class="app-container"
+    data-v-7a7a37b1=""
+  >
+    <app-header-stub
+      apptheme="0"
+      data-v-7a7a37b1=""
+    />
+    <todos-container-stub
+      apptheme="0"
+      data-v-7a7a37b1=""
+    />
+  </div>
+</div>
+`;

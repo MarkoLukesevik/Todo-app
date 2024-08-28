@@ -4,8 +4,11 @@ import type { Ref } from 'vue';
 
 import { AppThemeEnum } from '@/models/AppThemeEnum';
 
+import { useViewport } from './mixins/viewportMixin';
+
 import TodosContainer from '@/components/TodosContainer/TodosContainer.vue';
 import AppHeader from '@/components/AppHeader.vue';
+
 
 const getAppThemeFromLocalStorage = (): AppThemeEnum => {
     const storedAppTheme = localStorage.getItem('appTheme');
@@ -19,9 +22,10 @@ const setAppThemeLocalStorage =(): void => {
 }
 
 const appTheme: Ref<AppThemeEnum> = ref(getAppThemeFromLocalStorage());
+    const { width: viewportWidth } = useViewport();
 
 const appBackgroundImage = computed<string>(() => {
-    if (window.innerWidth < 768) {
+    if (viewportWidth.value < 768) {
       return appTheme.value === AppThemeEnum.Light
         ? '/assets/images/bg-mobile-light.jpg'
         : '/assets/images/bg-mobile-dark.jpg';
@@ -48,8 +52,8 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
 </script>
 
 <template>
-    <div :class="appClasses">
-        <div :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
+    <div data-test="app" :class="appClasses">
+        <div  data-test="app-image" :style="{ backgroundImage: 'url(' + appBackgroundImage + ')' }" class="app-image"></div>
         <div class="app-container">
             <app-header :appTheme="appTheme" @toggle-theme="handleThemeToggle" />
             <todos-container :app-theme="appTheme" />
@@ -82,7 +86,7 @@ const handleThemeToggle = (theme: AppThemeEnum): void => {
         top: 0;
 
         background-size: cover;
-        background-position: bottom right;
+        background-position: center;
         background-repeat: no-repeat;
 
         width: 100%;
