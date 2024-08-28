@@ -3,35 +3,11 @@ import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { nextTick } from 'vue';
 
 import { AppThemeEnum } from '@/models/AppThemeEnum';
+import { mockLocalStorage } from './mockLocalStorage/mockLocalStorage';
 
 import App from '@/App.vue';
 import AppHeader from '@/components/AppHeader.vue';
 
-
-interface MockLocalStorage {
-    store: Record<string, string>;
-    getItem(key: string): string | null;
-    setItem(key: string, value: string): void;
-    removeItem(key: string): void;
-    clear(): void;
-  }
-
-const mockLocalStorage: MockLocalStorage = {
-    store: {},
-    getItem(key: string) {
-      return this.store[key] || null;
-    },
-    setItem(key: string, value: string) {
-      this.store[key] = value;
-    },
-    removeItem(key: string) {
-      delete this.store[key];
-    },
-    clear(): void {
-        this.store = {};
-    }
-};
-  
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 
 describe('Test suite for app component', () => {
