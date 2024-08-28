@@ -1,0 +1,22 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for create todo component > Should match the snapshot 1`] = `
+<div
+  class="create-todo-container"
+  data-test="create-todo-container"
+  data-v-a79cb070=""
+  style="background-color: rgb(255, 255, 255);"
+>
+  <check-button-stub
+    apptheme="0"
+    data-v-a79cb070=""
+    ischecked="false"
+  />
+  <text-input-stub
+    apptheme="0"
+    data-v-a79cb070=""
+    modelvalue=""
+    placeholder="Create new todo..."
+  />
+</div>
+`;

@@ -6,6 +6,9 @@ import { TodosFilterEnum } from "@/models/TodosFilterEnum";
 import { AppThemeEnum } from "@/models/AppThemeEnum";
 
 import TodosContainer from "@/components/TodosContainer/TodosContainer.vue";
+import CreateTodo from "@/components/TodosContainer/components/CreateTodo.vue";
+import TodoList from "@/components/TodosContainer/components/TodoList/TodoList.vue";
+import TodosActionBar from "@/components/TodosContainer/components/TodosActionBar.vue";
 
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 
@@ -146,5 +149,16 @@ describe('Test suite for todo container component', () => {
         await wrapper.setProps({appTheme: AppThemeEnum.Dark});
 
         expect(wrapper.vm.dragAndDropTextColor).toBe('#5B5E7E');
+    });
+
+    it('Should render create-todo and todo-list and todos-action-bar components', () => {
+        const checkButton = wrapper.findComponent(CreateTodo);
+        expect(checkButton.exists()).toBe(true);
+    
+        const textInput = wrapper.findComponent(TodoList);
+        expect(textInput.exists()).toBe(true);
+
+        const todoActionBar = wrapper.findComponent(TodosActionBar);
+        expect(todoActionBar.exists()).toBe(true);
     });
 })

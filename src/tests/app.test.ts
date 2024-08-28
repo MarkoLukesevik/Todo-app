@@ -7,6 +7,7 @@ import { mockLocalStorage } from './mockLocalStorage/mockLocalStorage';
 
 import App from '@/App.vue';
 import AppHeader from '@/components/AppHeader.vue';
+import TodosContainer from '@/components/TodosContainer/TodosContainer.vue';
 
 Object.defineProperty(window, 'localStorage', { value: mockLocalStorage });
 
@@ -102,4 +103,12 @@ describe('Test suite for app component', () => {
 
         expect(wrapper.vm.appTheme).toBe(AppThemeEnum.Dark);
       });
+
+    it('Should render app-header and todos-container components', () => {
+        const checkButton = wrapper.findComponent(AppHeader);
+        expect(checkButton.exists()).toBe(true);
+    
+        const textInput = wrapper.findComponent(TodosContainer);
+        expect(textInput.exists()).toBe(true);
+    });
 });

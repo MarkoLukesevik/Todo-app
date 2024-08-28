@@ -48,6 +48,7 @@ const toggleNewTodo = (): void => {
 
 <template>
     <div
+        data-test="create-todo-container"
         class="create-todo-container"
         @keyup.enter="handleAddNewTodo()"
         :style="{ backgroundColor: containerBackgroundColor }"
