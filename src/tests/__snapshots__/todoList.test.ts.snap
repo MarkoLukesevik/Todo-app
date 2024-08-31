@@ -1,0 +1,69 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Todos > Should match the snapshot 1`] = `
+<div
+  class="todos"
+  data-test="todos-list"
+  data-v-fbbc3ae1=""
+>
+  <!--v-if-->
+  <div
+    class="todos-list"
+    data-v-fbbc3ae1=""
+  >
+    <draggable-stub
+      clone="[Function]"
+      data-v-fbbc3ae1=""
+      delay="100"
+      itemkey="todos"
+      modelvalue="[object Object],[object Object]"
+      tag="div"
+    />
+  </div>
+  <div
+    class="todos-footer"
+    data-v-fbbc3ae1=""
+  >
+    <div
+      class="todos-footer__counter"
+      data-test="todos-list-counter"
+      data-v-fbbc3ae1=""
+    >
+      2 items left
+    </div>
+    <div
+      class="todos-footer__actions"
+      data-v-fbbc3ae1=""
+    >
+      <span
+        class="active-filter"
+        data-test="todos-list-all-filter"
+        data-v-fbbc3ae1=""
+      >
+         All 
+      </span>
+      <span
+        class=""
+        data-test="todos-list-active-filter"
+        data-v-fbbc3ae1=""
+      >
+         Active 
+      </span>
+      <span
+        class=""
+        data-test="todos-list-completed-filter"
+        data-v-fbbc3ae1=""
+      >
+         Completed 
+      </span>
+    </div>
+    <div
+      class="todos-footer__clear"
+      data-test="todos-list-clear"
+      data-v-fbbc3ae1=""
+    >
+       Clear Completed 
+    </div>
+  </div>
+</div>
+`;

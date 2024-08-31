@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for x button component > Should match the snapshot 1`] = `
+<button
+  class="x-button"
+  data-v-896068b5=""
+>
+  <img
+    alt=""
+    data-v-896068b5=""
+    src="/assets/images/icon-cross.svg"
+  />
+</button>
+`;

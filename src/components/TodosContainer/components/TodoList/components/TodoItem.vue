@@ -32,14 +32,14 @@ const todoItemClasses = computed<string[]>(() => {
 </script>
 
 <template>
-    <div :class="todoItemClasses">
+    <div data-test="todo-item" :class="todoItemClasses">
         <div class="todo-item-content">
             <check-button
                 :isChecked="todo.isComplete"
                 :app-theme="appTheme"
                 @toggle="emit('toggle-todo', todo.id)"
             />
-            <p>{{ todo.title }}</p>
+            <p data-test="todo-item-title">{{ todo.title }}</p>
         </div>
         <x-button @button-click="emit('delete-todo', todo.id)"></x-button>
     </div>

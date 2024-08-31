@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`AppInput > Should match the snapshot 1`] = `
+<input
+  class="app-input"
+  data-v-4befb250=""
+  placeholder="Enter text"
+  style="color: rgb(148, 149, 165);"
+  value="initial value"
+/>
+`;

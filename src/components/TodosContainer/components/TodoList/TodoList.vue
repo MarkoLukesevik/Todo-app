@@ -41,8 +41,12 @@ const todosClasses = computed<string[]>(() => {
 </script>
 
 <template>
-    <div :class="todosClasses">
-        <p v-if="todosCount === 0" class="todos-empty">Your todo list is empty. please add some todo items.</p>
+    <div data-test="todos-list" :class="todosClasses">
+        <p
+            data-test="todos-list-empty"
+            v-if="todosCount === 0"
+            class="todos-empty">Your todo list is empty. please add some todo items.
+        </p>
         <div class="todos-list">
             <draggable
                 v-model="scopedTodos"
@@ -62,28 +66,37 @@ const todosClasses = computed<string[]>(() => {
             </draggable>
         </div>
         <div class="todos-footer">
-            <div class="todos-footer__counter">{{ todosCount }} items left</div>
+            <div data-test="todos-list-counter" class="todos-footer__counter">{{ todosCount }} items left</div>
             <div class="todos-footer__actions">
                 <span
+                    data-test="todos-list-all-filter"
                     :class="{ 'active-filter': todosFilter === TodosFilterEnum.All }"
                     @click="emit('change-todos-filter', TodosFilterEnum.All)"
                 >
                     All
                 </span>
                 <span
+                    data-test="todos-list-active-filter"
                     :class="{ 'active-filter': todosFilter === TodosFilterEnum.Active }"
                     @click="emit('change-todos-filter', TodosFilterEnum.Active)"
                 >
                     Active
                 </span>
                 <span
+                    data-test="todos-list-completed-filter"
                     :class="{ 'active-filter': todosFilter === TodosFilterEnum.Completed }"
                     @click="emit('change-todos-filter', TodosFilterEnum.Completed)"
                 >
                     Completed
                 </span>
             </div>
-            <div class="todos-footer__clear" @click="emit('delete-completed-todos')">Clear Completed</div>
+            <div
+                data-test="todos-list-clear"
+                class="todos-footer__clear"
+                @click="emit('delete-completed-todos')"
+            >
+                Clear Completed
+            </div>
         </div>
     </div>
 </template>

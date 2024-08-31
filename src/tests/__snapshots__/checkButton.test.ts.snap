@@ -1,0 +1,10 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Test suite for check button component > Should match the snapshot 1`] = `
+<button
+  class="check-button"
+  data-v-26dbdb21=""
+>
+  <!--v-if-->
+</button>
+`;

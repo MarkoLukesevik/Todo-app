@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`TodoItem > Should match the snapshot 1`] = `
+<div
+  class="todo-item"
+  data-test="todo-item"
+  data-v-4332fe46=""
+>
+  <div
+    class="todo-item-content"
+    data-v-4332fe46=""
+  >
+    <check-button-stub
+      apptheme="0"
+      data-v-4332fe46=""
+      ischecked="false"
+    />
+    <p
+      data-test="todo-item-title"
+      data-v-4332fe46=""
+    >
+      Sample Todo
+    </p>
+  </div>
+  <x-button-stub
+    data-v-4332fe46=""
+  />
+</div>
+`;
