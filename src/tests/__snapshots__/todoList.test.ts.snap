@@ -14,7 +14,8 @@ exports[`Todos > Should match the snapshot 1`] = `
     <draggable-stub
       clone="[Function]"
       data-v-fbbc3ae1=""
-      delay="100"
+      delay="1"
+      disabled="false"
       itemkey="todos"
       modelvalue="[object Object],[object Object]"
       tag="div"

@@ -51,7 +51,8 @@ const todosClasses = computed<string[]>(() => {
             <draggable
                 v-model="scopedTodos"
                 :item-key="'todos'"
-                :delay="100"
+                :delay="1"
+                :disabled="todosFilter !== TodosFilterEnum.All"
                 @change=" emit('update:model-value', scopedTodos)"
             >
                 <template #item="{ element: todo }">
